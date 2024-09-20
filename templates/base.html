@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta Data -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Home Parallax | Mojuri</title>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="{% static "media/favicon.png" %}">
+		
+		<!-- Dependency Styles -->
+		<link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/feather-font/css/iconfont.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/icomoon-font/css/icomoon.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/wpbingofont/css/wpbingofont.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/elegant-icons/css/elegant.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/slick/css/slick.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/slick/css/slick-theme.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/mmenu/css/mmenu.min.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'libs/slider/css/jslider.css' %}">
+	
+		<!-- Site Stylesheet -->
+		<link rel="stylesheet" href="{% static 'assets/css/app.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" type="text/css">
+		
+		<!-- Google Web Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	</head>
+	
+	<body class="home home-5">
+		<div id="page" class="hfeed page-wrapper">
+			<header id="site-header" class="site-header header-v1 color-white">
+				<div class="header-mobile">
+					<div class="section-padding">
+						<div class="section-container">
+							<div class="row">
+								<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3 header-left">
+									<div class="navbar-header">
+										<button type="button" id="show-megamenu" class="navbar-toggle"></button>
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 header-center">
+									<div class="site-logo">
+										<a href="index5.html">
+											<img width="400" height="79" src="media/logo-white.png" alt="Mojuri – Jewelry Store HTML Template" />
+										</a>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class="header-mobile-fixed">
+						<!-- Shop -->
+						<div class="shop-page">
+							<a href="shop-grid-left.html"><i class="wpb-icon-shop"></i></a>
+						</div>
+
+						<!-- Login -->
+						<div class="my-account">
+							<div class="login-header">
+								<a href="page-my-account.html"><i class="wpb-icon-user"></i></a>
+							</div>
+						</div>
+
+						<!-- Search -->
+						<div class="search-box">
+							<div class="search-toggle"><i class="wpb-icon-magnifying-glass"></i></div>
+						</div>
+
+						<!-- Wishlist -->
+						<div class="wishlist-box">
+							<a href="shop-wishlist.html"><i class="wpb-icon-heart"></i></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="header-desktop">
+					<div class="header-wrapper">
+						<div class="section-padding">
+							<div class="section-container large p-l-r">
+								<div class="row">
+									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 header-left">
+										<div class="site-logo">
+											<a href="index5.html">
+												<img width="400" height="140" src="{% static "media/logo-white.png" %}" alt="Mojuri – Jewelry Store HTML Template" />
+											</a>
+										</div>
+									</div>
+
+									<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 text-center header-center">
+										<div class="site-navigation">
+											<nav id="main-navigation">
+												<ul id="menu-main-menu" class="menu">
+													<li class="level-0 menu-item menu-item">
+														<a href="/"><span class="menu-item-text">Home</span></a>
+													</li>
+													
+													<li class="level-0 menu-item-has-children">
+														<a href="shop-grid-left.html"><span class="menu-item-text">Category</span></a>
+														<ul class="sub-menu">
+															{% for categories in categories %}
+															<li>
+																<a href="{% url 'category_details' categories.id  %}"><span class="menu-item-text">{{categories.name}}</span></a>
+															</li>
+															{% endfor %}
+															
+														</ul>
+													</li>
+													
+													<li class="level-0 menu-item menu-item">
+														<a href="{% url "shop" %}"><span class="menu-item-text">All Products</span></a>
+														
+													</li>
+													<li class="level-0 menu-item">
+														<a href="{% url "contact" %}"><span class="menu-item-text">Contact</span></a>
+													</li>
+												</ul>
+											</nav>
+										</div>
+									</div>
+
+									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 header-right">
+										<div class="header-page-link">
+											<!-- Search -->
+											<div class="search-box">
+												<div class="search-toggle"><i class="icon-search"></i></div>
+											</div>
+
+										
+
+										
+											
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+
+            {% block body %}
+            {% endblock body %}
+
+
+            
+			<footer id="site-footer" class="site-footer three-columns">
+				<div class="footer">
+					<div class="section-padding">
+						<div class="section-container">
+							<div class="block-widget-wrap">
+								<div class="row">
+									<div class="col-lg-4 column-left">
+										<div class="column-wrap">
+											<div class="block block-newsletter">
+												<h2 class="block-title">Our Newsletter</h2>
+												<div class="block-content">
+													<div class="newsletter-text">Sign up for the latest offers and exclusives.</div>
+													<form action="" method="post" class="newsletter-form">
+														<input type="email" name="your-email" value="" size="40" placeholder="Email address">
+														<span class="btn-submit">
+															<input type="submit" value="Subscribe">
+														</span>
+													</form>
+												</div>
+											</div>
+											<div class="block block-image">
+												<img width="309" height="32" src="{% static "media/payments.png" %}" alt="">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 column-center">
+										<div class="column-wrap">
+											<div class="block block-image m-b-20">
+												<img width="100" src="{% static "media/logo.png" %}%}" alt="">
+											</div>
+											<div class="block block-social">
+												<ul class="social-link">
+													<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+													<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+													<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+													<li><a href="#"><i class="fa fa-behance"></i></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 column-right">
+										<div class="column-wrap">
+											<div class="row">
+												<div class="col-lg-6 md-b-20">
+													<div class="block block-menu">
+														<h2 class="block-title">Customer Services</h2>
+														<div class="block-content">
+															<ul>
+																<li>
+																	<a href="contact">Contact Us</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="block block-menu">
+														<h2 class="block-title">About Us</h2>
+														<div class="block-content">
+															<ul>
+																<li>
+																	<a href="about">About Us</a>
+																</li>
+																<li>
+																	<a href="shop">Our Producers</a>
+																</li>
+																<li>
+																	<a href="#">Sitemap</a>
+																</li>
+																<li>
+																	<a href="#">Terms & Conditions</a>
+																</li>
+																<li>
+																	<a href="#">Privacy Policy</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="section-padding">
+						<div class="section-container">
+							<div class="block-widget-wrap">
+								<p class="copyright text-center">Designed & Developed by <a href="www.nexel.in">N E X E L </a> AzzliaS WARDROBE - Copyright © 2024. All Right Reserved</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Back Top button -->
+		<div class="back-top button-show">
+			<i class="arrow_carrot-up"></i>
+		</div>
+
+	
+
+		<!-- Newsletter Popup -->
+		<div class="popup-shadow"></div>
+		<div class="newsletter-popup">
+			<a href="#" class="newsletter-close"></a>
+			<div class="newsletter-container"> 
+				<div class="newsletter-img">
+					<img src="{% static "media/banner/newsletter-popup.png" %}" alt="">
+				</div> 
+				<div class="newsletter-form">
+					<form action="" method="post">
+						<div class="newsletter-title">
+							<div class="title">Get<br> free shipping</div>
+							<div class="sub-title">on your first order. Offer ends soon.</div>
+						</div>
+						<div class="newsletter-input clearfix">
+							<input type="email" name="your-email" size="40" class="form-control" placeholder="Enter Your Email ...">
+							<input type="submit" value="Subscribe" class="form-control">
+			     		</div>
+			     		<div class="newsletter-no">no thanks !</div>
+					</form>
+				</div> 
+			</div>
+		</div>
+
+		<!-- Page Loader -->
+		<div class="page-preloader">
+	    	<div class="loader">
+	    		<div></div>
+	    		<div></div>
+	    	</div>
+	    </div>
+
+		<!-- Dependency Scripts -->
+		<script src="{% static "libs/popper/js/popper.min.js" %}"></script>
+		<script src="{% static "libs/jquery/js/jquery.min.js" %}"></script>
+		<script src="{% static "libs/bootstrap/js/bootstrap.min.js" %}"></script>
+		<script src="{% static "libs/slick/js/slick.min.js" %}"></script>
+		<script src="{% static "libs/mmenu/js/jquery.mmenu.all.min.js" %}"></script>
+		<script src="{% static 'libs/slider/js/tmpl.js' %}"></script>
+		<script src="{% static "libs/slider/js/jquery.dependClass-0.1.js" %}"></script>
+		<script src="{% static "libs/slider/js/draggable-0.1.js" %}"></script>
+		<script src="{% static "libs/slider/js/jquery.slider.js" %}"></script>
+		<script src="{% static "libs/elevatezoom/js/jquery.elevatezoom.js" %}"></script>
+		
+		<!-- Site Scripts -->
+		<script src="{% static "assets/js/app.js" %}"></script>
+	</body>
+</html>

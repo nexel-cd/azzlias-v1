@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+
+		<div id="page" class="hfeed page-wrapper">
+			<div id="site-main" class="site-main">
+				<div id="main-content" class="main-content">
+					<div id="primary" class="content-area">
+
+						<div id="title" class="page-title">
+							<div class="section-container">
+								<div class="content-title-heading">
+									<h1 class="text-title-heading">
+										All Products
+									</h1>
+								</div>
+								<div class="breadcrumbs">
+									<a href="index.html">Home</a><span class="delimiter"></span><a href="shop-grid-left.html">Shop</a><span class="delimiter"></span>Category
+								</div>
+							</div>
+						</div>
+
+						<div id="content" class="site-content" role="main">
+							<div class="section-padding">
+								<div class="section-container p-l-r">
+									<div class="row">
+										<div class="col-xl-12 col-lg-12 col-md-12 col-12">
+											<div class="products-topbar clearfix">
+												<div class="products-topbar-left">
+													<div class="products-count">
+														Showing all {{products_list_count}} results
+													</div>
+												</div>
+												
+											</div>
+
+											<div class="tab-content">
+												<div class="tab-pane fade show active" id="layout-grid" role="tabpanel">
+													<div class="products-list grid">
+														<div class="row">
+															<!-- Loop through paginated products -->
+															{% for product in page_obj %}
+															<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+																<div class="products-entry clearfix product-wapper">
+																	<div class="products-thumb">
+																		<div class="product-thumb-hover border">
+																			<a href="{% url 'product_details' product.id %}">
+																				<img width="600" height="600" style="width:500px; height:450px" src="{{product.image.url}}" class="post-image" alt="">
+																				<img width="600" height="600" src="{{product.image.url}}" style="width:500px; height:450px" class="hover-image back" alt="">
+																			</a>
+																		</div>
+																	</div>
+																	<div class="products-content">
+																		<div class="contents text-center">
+																			<div class="rating">
+																				<div class="star star-5"></div>
+																			</div>
+																			<h3 class="product-title"><a href="{% url 'product_details' product.id %}">{{product.name}}</a></h3>
+																			<span class="price">
+																				<del aria-hidden="true"><span>Rs. {{product.price}}</span></del>
+																				<ins><span>Rs. {{product.disprice}}</span></ins>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															{% endfor %}
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<!-- Pagination controls -->
+											<nav class="pagination">
+												<ul class="page-numbers">
+													{% if page_obj.has_previous %}
+														<li><a class="prev page-numbers" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+													{% endif %}
+											
+													<!-- Display page numbers -->
+													{% for num in page_obj.paginator.page_range %}
+														{% if page_obj.number == num %}
+															<li><span aria-current="page" class="page-numbers current">{{ num }}</span></li>
+														{% else %}
+															<li><a class="page-numbers" href="?page={{ num }}">{{ num }}</a></li>
+														{% endif %}
+													{% endfor %}
+											
+													{% if page_obj.has_next %}
+														<li><a class="next page-numbers" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+													{% endif %}
+												</ul>
+											</nav>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><!-- #content -->
+					</div><!-- #primary -->
+				</div><!-- #main-content -->
+			</div>
+
+			
+		</div>
+
+		<!-- Back Top button -->
+		<div class="back-top button-show">
+			<i class="arrow_carrot-up"></i>
+		</div>
+
+		<!-- Search -->
+		<div class="search-overlay">
+			<div class="close-search"></div>
+			<div class="wrapper-search">
+				<form role="search" method="get" class="search-from ajax-search" action="">
+					<a href="#" class="search-close"></a>
+					<div class="search-box">
+						<button id="searchsubmit" class="btn" type="submit">
+							<i class="icon-search"></i>
+						</button>
+						<input type="text" autocomplete="off" value="" name="s" class="input-search s" placeholder="Search...">
+						<div class="content-menu_search">
+							<label>Suggested</label>
+							<ul id="menu_search" class="menu">
+								<li><a href="#">Earrings</a></li>
+								<li><a href="#">Necklaces</a></li>
+								<li><a href="#">Bracelets</a></li>
+								<li><a href="#">Jewelry Box</a></li>
+							</ul>			
+						</div>
+					</div>
+				</form>	
+			</div>	
+		</div>
+
+	
+		<!-- Page Loader -->
+		<div class="page-preloader">
+	    	<div class="loader">
+	    		<div></div>
+	    		<div></div>
+	    	</div>
+	    </div>
+
+
+{% endblock body %}
